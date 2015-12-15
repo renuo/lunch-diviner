@@ -1,5 +1,6 @@
-gem 'sinatra'
+source 'http://rubygems.org'
+
 gem 'spreadsheet'
 gem 'httparty'
-gem 'slackbotsy'
+gem 'slack-ruby-bot'
 gem 'figaro'

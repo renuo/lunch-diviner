@@ -1,18 +1,18 @@
 require './Lunch_Diviner.rb'
-require 'sinatra'
+require 'slack-ruby-bot'
 
-config = {
-    'channel'          => '#lunch',
-    'name'             => 'lunchbot',
-    'incoming_webhook' =>  ENV['slack_incoming_webhook'],
-    'outgoing_token'   =>  ENV['slack_outgoing_token']
-}
+ENV.update YAML.load_file('config/application.yml') rescue {}
 
-bot = Slackbotsy::Bot.new(config) do
-
-  hear /reishauer\?/i do
-    a = LunchDiviner.new
-    post_message a.get_menu, channel: '#lunch'
+module LunchBot
+  class App < SlackRubyBot::App
   end
 
+  class Lunch < SlackRubyBot::Commands::Base
+    command 'reishauer?' do |client, data, _match|
+      a = LunchDiviner.new
+      client.message text: a.get_menu, channel: data.channel
+    end
+  end
 end
+
+LunchBot::App.instance.run

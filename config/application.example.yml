@@ -1,3 +1,1 @@
-slack_incoming_webhook: 'https://hooks.slack.com/services/xxxxxxxxxx'
-slack_outgoing_token: 'xxxxxx'
-
+SLACK_API_TOKEN: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxx'

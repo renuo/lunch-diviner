@@ -52,7 +52,6 @@ class LunchDiviner
   end
 
   def print_weekday(weekday)
-    "==== #{Date::DAYNAMES[weekday]} ====\n"\
     "#{print_day(4+(weekday-1)*11)}"
 
   end
