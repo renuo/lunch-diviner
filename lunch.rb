@@ -1,5 +1,5 @@
-require 'Lunch_Diviner.rb'
 require 'slack-ruby-bot'
+require_relative 'lib/lunch_diviner'
 
 ENV.update YAML.load_file('config/application.yml') rescue {}
 
