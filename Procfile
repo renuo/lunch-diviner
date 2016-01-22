@@ -1,1 +1,1 @@
-console: bundle exec ruby lunch.rb
+web: bundle exec puma -p $PORT
