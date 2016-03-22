@@ -5,9 +5,11 @@ require 'httparty'
 class LunchDiviner
   BASE_URL = 'http://www.compass-group.ch/units'
   @fields
+  @format
 
-  def initialize
+  def initialize(format = :slack)
     @fields = map_excel_fields_to_array
+    @format = format
   end
 
   def get_menu(day = Date.today.wday)
@@ -38,11 +40,23 @@ class LunchDiviner
   end
 
   def print_menu(rowindex, colindex)
-    "*#{@fields[rowindex+=3][colindex]}* (#{@fields[rowindex+6][colindex+1]})\n"\
-    "#{@fields[rowindex+=1][colindex]} "\
-    "#{@fields[rowindex+=1][colindex]} "\
-    "#{@fields[rowindex+=1][colindex]} "\
-    "#{@fields[rowindex+=1][colindex]}\n"
+    title = @fields[rowindex+=3][colindex]
+    price = @fields[rowindex+6][colindex+1]
+    description = "#{@fields[rowindex+=1][colindex]} "\
+      "#{@fields[rowindex+=1][colindex]} "\
+      "#{@fields[rowindex+=1][colindex]} "\
+      "#{@fields[rowindex+=1][colindex]}"
+    format_menu(title, price, description)
+  end
+
+  def format_menu(title, price, description)
+    price.gsub!(/\A[[:space:]]+/, '')
+    if @format == :slack
+      return "*#{title}* (#{price})\n#{description}\n"
+    end
+
+    "<h3 class=\"title\"><span class=\"menu-name\">#{title}</span> <span class=\"price\">(#{price})</span></h3>"\
+    "<p class=\"description\">#{description}</p>"
   end
 
   def print_day(rowindex)
