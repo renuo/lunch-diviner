@@ -1,0 +1,24 @@
+body {
+    font-family: sans-serif;
+    color: #333;
+}
+
+#menu .title {
+    font-weight: normal;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 0;
+}
+
+#menu .price {
+    color: #aaa;
+    font-size: smaller;
+}
+
+#menu .menu-name {
+    font-weight: bold;
+}
+
+#menu .description {
+    margin-top: 1em;
+    margin-bottom: 2em;
+}

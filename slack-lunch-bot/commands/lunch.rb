@@ -1,4 +1,4 @@
-require_relative 'lib/lunch_diviner'
+require_relative '../../lib/lunch_diviner'
 
 module SlackLunchBot
   module Commands
