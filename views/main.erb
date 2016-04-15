@@ -5,9 +5,14 @@
   <link href="assets/css/style.css" rel="stylesheet"/>
 </head>
 <body>
-  <h1>Reishauer: Menu</h1>
   <div id="menu">
-    <%= LunchDiviner.new(:html).get_menu %>
+    <%=
+      begin
+        LunchDiviner.new(:html).get_menu
+      rescue
+        'Menu not available.'
+      end
+    %>
   </div>
 </body>
 </html>
