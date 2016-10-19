@@ -8,7 +8,7 @@
   <div id="menu">
     <%=
       begin
-        LunchDiviner.new(:html).get_menu
+        LunchDiviner.new.html_formatted_menu
       rescue
         'Menu not available.'
       end

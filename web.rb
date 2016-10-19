@@ -1,8 +1,11 @@
-require 'sinatra/base'
+# frozen_string_literal: true
+require 'sinatra'
 require_relative 'lib/lunch_diviner'
 require 'tilt/erb'
 
-set :public_folder, '#{settings.root}/public'
+configure do
+  set :public_folder, '#{settings.root}/public'
+end
 
 module SlackLunchBot
   class Web < Sinatra::Base
@@ -11,4 +14,3 @@ module SlackLunchBot
     end
   end
 end
-

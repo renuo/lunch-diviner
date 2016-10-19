@@ -1,6 +1,9 @@
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 
-require 'slack-lunch-bot'
+require 'dotenv'
+Dotenv.load
+
+require 'slack_lunch_bot'
 require 'web'
 
 Thread.abort_on_exception = true
