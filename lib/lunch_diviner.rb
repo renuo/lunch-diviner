@@ -13,7 +13,7 @@ class LunchDiviner
   end
 
   def meal(menu_type, day)
-    meal_node = menu_type(menu_type).css('.meal').at(day).children
+    meal_node = menu_type(menu_type).css('.meal').at(day - 1).children
     meal_object(meal_node)
   end
 
