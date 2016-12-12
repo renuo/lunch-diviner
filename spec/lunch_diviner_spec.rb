@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 require 'spec_helper'
 
-def mock_request
+def mock_request_body
   mocked_result = File.open('spec/data/sample_request.html')
   expect_any_instance_of(LunchDiviner).to receive(:html_menu_content).and_return(mocked_result)
 end
 
 describe LunchDiviner do
-  before(:each) { mock_request }
+  before(:each) { mock_request_body }
 
   it 'returns an array of all three menu categories' do
     lunch_deviner = LunchDiviner.new
