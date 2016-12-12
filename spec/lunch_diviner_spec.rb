@@ -21,7 +21,7 @@ describe LunchDiviner do
       description: 'Senf Petersilienkartoffeln Sauerkraut' }
   end
 
-  it 'returns an array of all three menu categories' do
+  it 'returns menu of weekdays' do
     lunch_deviner = LunchDiviner.new
     expect(lunch_deviner.meal(LunchDiviner::MENU, 1)).to eq(monday_menu)
     expect(lunch_deviner.meal(LunchDiviner::MENU, 2)).to eq(tuesday_menu)
