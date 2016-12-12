@@ -9,14 +9,18 @@ end
 describe LunchDiviner do
   before(:each) { mock_request_body }
 
+  let(:monday_menu) do
+    { title: 'Rippli und Würstli (CH)', price: '9.80', description: 'Senf Petersilienkartoffeln Sauerkraut' }
+  end
+
+  let(:tuesday_menu) do
+    { title: 'Rippli und Würstli (CH)', price: '9.80', description: 'Senf Petersilienkartoffeln Sauerkraut' }
+  end
+
   it 'returns an array of all three menu categories' do
     lunch_deviner = LunchDiviner.new
-    expected = { title: 'Rippli und Würstli (CH)', price: '9.80',
-                 description: 'Senf Petersilienkartoffeln Sauerkraut' }
-    expect(lunch_deviner.meal(LunchDiviner::MENU, 1)).to eq(expected)
-    expected = { title: 'Hausgemachter Rindshackbraten(CH)', price: '9.80',
-                 description: 'mit Madeirasauce Kartoffelstock, dazu Tagessalat oder Gemüse' }
-    expect(lunch_deviner.meal(LunchDiviner::MENU, 2)).to eq(expected)
+    expect(lunch_deviner.meal(LunchDiviner::MENU, 1)).to eq(monday_menu)
+    expect(lunch_deviner.meal(LunchDiviner::MENU, 2)).to eq(tuesday_menu)
   end
 
   it 'returns a formatted slack message' do
