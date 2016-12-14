@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+
+require 'pathname'
+APP_ROOT = Pathname.new File.expand_path('../../', __FILE__)
+
+Dir.chdir APP_ROOT do
+  system 'bundle install'
+  system 'cp config/application.example.yml config/application.yml' unless File.exist?('config/application.yml')
+  system 'bin/check'
+end

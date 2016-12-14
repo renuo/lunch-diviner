@@ -1,22 +1,30 @@
 # frozen_string_literal: true
 require 'spec_helper'
 
-def mock_request
+def mock_request_body
   mocked_result = File.open('spec/data/sample_request.html')
   expect_any_instance_of(LunchDiviner).to receive(:html_menu_content).and_return(mocked_result)
 end
 
 describe LunchDiviner do
-  before(:each) { mock_request }
+  before(:each) { mock_request_body }
 
-  it 'returns an array of all three menu categories' do
+  let(:monday_menu) do
+    { title: 'Akropolis Burger',
+      price: '9.80',
+      description: 'Rindfleisch (CH) im  Pita Brot mit Tzatziki, Feta und Tomatenscheib Country Fries und Tagessalat' }
+  end
+
+  let(:tuesday_menu) do
+    { title: 'Rippli und Würstli (CH)',
+      price: '9.80',
+      description: 'Senf Petersilienkartoffeln Sauerkraut' }
+  end
+
+  it 'returns menu of weekdays' do
     lunch_deviner = LunchDiviner.new
-    expected = { title: 'Rippli und Würstli (CH)', price: '9.80',
-                 description: 'Senf Petersilienkartoffeln Sauerkraut' }
-    expect(lunch_deviner.meal(LunchDiviner::MENU, 1)).to eq(expected)
-    expected = { title: 'Hausgemachter Rindshackbraten(CH)', price: '9.80',
-                 description: 'mit Madeirasauce Kartoffelstock, dazu Tagessalat oder Gemüse' }
-    expect(lunch_deviner.meal(LunchDiviner::MENU, 2)).to eq(expected)
+    expect(lunch_deviner.meal(LunchDiviner::MENU, 1)).to eq(monday_menu)
+    expect(lunch_deviner.meal(LunchDiviner::MENU, 2)).to eq(tuesday_menu)
   end
 
   it 'returns a formatted slack message' do
