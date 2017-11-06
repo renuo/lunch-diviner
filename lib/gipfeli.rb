@@ -11,6 +11,10 @@ class Gipfeli
                       socket_failure_delay: 0.2)
   end
 
+  def self.format_wish(wish)
+    wish.to_s.sub(/^.*?add\s?/, '')
+  end
+
   def self.add(wish)
     if !wish.empty?
       cache.set('list', "#{cache.get('list')}\n#{wish}", 36_000)
@@ -22,5 +26,11 @@ class Gipfeli
 
   def self.format_wish(wish)
     wish.to_s.sub(/^.*?add\s?/, '')
+  end
+
+  def self.clear
+    list = cache.get('list')
+    cache.set('list', nil) if list
+    list
   end
 end
