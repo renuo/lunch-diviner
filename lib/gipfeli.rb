@@ -12,7 +12,7 @@ class Gipfeli
   end
 
   def self.add(wish)
-    if wish.length > 0
+    if !wish.empty?
       cache.set('list', "#{cache.get('list')}\n#{wish}", 36_000)
       "Your order of #{wish} has been added to the list."
     else

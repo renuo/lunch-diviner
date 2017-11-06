@@ -6,7 +6,7 @@ describe Gipfeli do
   let(:empty_wish) { 'gipfeli add' }
   let(:empty_wish_with_space) { 'gipfeli add ' }
 
-  let(:failure) { 'You need to tell me your order! (e.g. \'add gipfeli\')'}
+  let(:failure) { 'You need to tell me your order! (e.g. \'add gipfeli\')' }
   let(:success) { "Your order of #{wish} has been added to the list." }
 
   it 'formats the wish correctly' do

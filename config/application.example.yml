@@ -1,1 +1,5 @@
 SLACK_API_TOKEN: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+MEMCACHIER_SERVERS: 'xxx'
+MEMCACHIER_USERNAME: 'xxx'
+MEMCACHIER_PASSWORD: 'xxx'
+
