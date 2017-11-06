@@ -10,4 +10,17 @@ class Gipfeli
                       socket_timeout: 1.5,
                       socket_failure_delay: 0.2)
   end
+
+  def self.add(wish)
+    if wish.length > 0
+      cache.set('list', "#{cache.get('list')}\n#{wish}", 36_000)
+      "Your order of #{wish} has been added to the list."
+    else
+      'You need to tell me your order! (e.g. \'add gipfeli\')'
+    end
+  end
+
+  def self.format_wish(wish)
+    wish.to_s.sub(/^.*?add\s?/, '')
+  end
 end
