@@ -22,13 +22,13 @@ module SlackLunchBot
 
       command 'remind' do
         desc 'Reminds people in #lunch to place their orders soon.'
-        long_desc 'Sends a reminder to #lunch to place your orders within 5~ minutes. '+
+        long_desc 'Sends a reminder to #lunch to place your orders within 5~ minutes. '\
                   'You will get a notification once the wait is over and you should then go shopping.'
       end
 
       command 'clear' do
         desc 'Clears the shopping list and notifies people in #lunch that you\'re going to buy food.'
-        long_desc 'Empties the shopping list, showing you the contents and sending a notification to '+
+        long_desc 'Empties the shopping list, showing you the contents and sending a notification to '\
                   '#lunch to tell people you\'re going shopping.'
       end
     end

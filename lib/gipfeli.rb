@@ -15,22 +15,26 @@ class Gipfeli
     wish.to_s.sub(/^.*?add\s?/, '')
   end
 
+  def self.cache_get
+    cache.get('list')
+  end
+
+  def self.cache_set(content)
+    cache.set('list', content, 36_000)
+  end
+
   def self.add(wish)
     if !wish.empty?
-      cache.set('list', "#{cache.get('list')}\n#{wish}", 36_000)
+      cache_set("#{cache_get}\n#{wish}")
       "Your order of #{wish} has been added to the list."
     else
       'You need to tell me your order! (e.g. \'add gipfeli\')'
     end
   end
 
-  def self.format_wish(wish)
-    wish.to_s.sub(/^.*?add\s?/, '')
-  end
-
   def self.clear
-    list = cache.get('list')
-    cache.set('list', nil) if list
+    list = list
+    cache_set(nil) if list
     list
   end
 end
