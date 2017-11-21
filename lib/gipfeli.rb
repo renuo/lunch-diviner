@@ -24,17 +24,26 @@ class Gipfeli
   end
 
   def self.add(wish)
-    if !wish.empty?
-      cache_set("#{cache_get}\n#{wish}")
-      "Your order of #{wish} has been added to the list."
-    else
+    if wish.empty?
       'You need to tell me your order! (e.g. \'add gipfeli\')'
+    else
+      cache_set("#{cache_get}\n#{wish}")
+      "Your order of '#{wish}' has been added to the list."
     end
   end
 
   def self.clear
-    list = list
-    cache_set(nil) if list
+    list = show
+    cache_set(nil)
     list
+  end
+
+  def self.show
+    list = cache_get
+    if list
+      "*Here is the current list:*\n#{list}"
+    else
+      '*There are currently no orders.*'
+    end
   end
 end

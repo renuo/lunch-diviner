@@ -4,13 +4,8 @@ require_relative '../../../lib/gipfeli'
 module SlackLunchBot
   module Commands
     class Show < SlackRubyBot::Commands::Base
-      command 'remind' do |client, data, _match|
-        list = Gipfelic.cache_get
-        info_text = if list
-                      "*Here is the current list:*\n#{list}"
-                    else
-                      'There are currently no orders.'
-                    end
+      command 'show' do |client, data, _match|
+        info_text = Gipfeli.show
         client.say(channel: data.channel,
                    text: info_text)
       end
