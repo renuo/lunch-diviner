@@ -6,7 +6,8 @@ module SlackLunchBot
     class Add < SlackRubyBot::Commands::Base
       command 'add' do |client, data, match|
         wish = Gipfeli.format_wish match
-        client.say(channel: data.channel, text: Gipfeli.add(wish))
+        info_text = Gipfeli.add(wish)
+        client.say(channel: data.channel, text: info_text)
       end
     end
   end
