@@ -11,7 +11,10 @@ gem 'celluloid-io'
 gem 'nokogiri'
 
 group :development, :test do
+  gem 'rack-test'
   gem 'rake'
   gem 'foreman'
   gem 'rspec'
+  gem 'vcr'
+  gem 'webmock'
 end
