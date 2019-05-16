@@ -10,6 +10,7 @@ end
 module SlackLunchBot
   class Web < Sinatra::Base
     get '/' do
+      headers({ 'X-Frame-Options' => '' })
       erb :main
     end
   end
