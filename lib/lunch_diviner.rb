@@ -55,7 +55,6 @@ class LunchDiviner
   end
 
   def html_menu_content
-    page_url = 'https://clients.eurest.ch/de/reishauer/wallisellen/menu'
-    open(page_url)
+    open(ENV['MENU_URL'])
   end
 end
