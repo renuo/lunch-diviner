@@ -13,15 +13,18 @@ class LunchDiviner
   end
 
   def meal(menu_type, day)
-    meal_node = menu_type(menu_type).css('.meal').at(day - 1).children
-    meal_object(meal_node)
+    menu_node = menu_type(menu_type).css('.menu').at(day - 1)
+    meal_object(menu_node.css('.meal').children)
+  rescue
+    nil
   end
 
   def menu(day = Date.today.wday)
     return 'Weekday not between monday and friday' unless day.between?(1, 5)
     [meal(LunchDiviner::MENU, day),
      meal(LunchDiviner::VEGETARIAN, day),
-     meal(LunchDiviner::DAILY_SPECIAL, day)]
+     meal(LunchDiviner::DAILY_SPECIAL, day)
+    ].compact
   end
 
   def slack_formatted_menu(day = Date.today.wday)
