@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 require 'sinatra'
-require_relative 'lib/lunch_diviner'
+require_relative 'lib/reishauer_diviner'
 require 'tilt/erb'
 
 configure do

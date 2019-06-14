@@ -2,7 +2,7 @@
 require 'open-uri'
 require 'nokogiri'
 
-class LunchDiviner
+class ReishauerDiviner
   MENU = 0
   VEGETARIAN = 1
   DAILY_SPECIAL = 2
@@ -21,9 +21,9 @@ class LunchDiviner
 
   def menu(day = Date.today.wday)
     return 'Weekday not between monday and friday' unless day.between?(1, 5)
-    [meal(LunchDiviner::MENU, day),
-     meal(LunchDiviner::VEGETARIAN, day),
-     meal(LunchDiviner::DAILY_SPECIAL, day)
+    [meal(ReishauerDiviner::MENU, day),
+     meal(ReishauerDiviner::VEGETARIAN, day),
+     meal(ReishauerDiviner::DAILY_SPECIAL, day)
     ].compact
   end
 
@@ -58,6 +58,6 @@ class LunchDiviner
   end
 
   def html_menu_content
-    open(ENV['MENU_URL'])
+    open(ENV['REISHAUER_MENU_URL'])
   end
 end
