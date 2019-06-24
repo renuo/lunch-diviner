@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby File.read('.ruby-version').strip
 
-gem 'slack-ruby-bot', git: 'https://github.com/dblock/slack-ruby-bot.git'
+gem 'slack-ruby-bot'
 gem 'figaro'
 gem 'puma'
 gem 'sinatra'

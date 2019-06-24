@@ -1,11 +1,3 @@
-GIT
-  remote: https://github.com/dblock/slack-ruby-bot.git
-  revision: 1708693843487f1c1f97765d0d7ebbda1ef34d24
-  specs:
-    slack-ruby-bot (0.11.2)
-      hashie
-      slack-ruby-client (>= 0.6.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -37,7 +29,7 @@ GEM
       timers (>= 4.1.1)
     concurrent-ruby (1.1.5)
     diff-lcs (1.3)
-    dotenv (2.7.2)
+    dotenv (2.7.4)
     faraday (0.15.4)
       multipart-post (>= 1.2, < 3)
     faraday_middleware (0.13.1)
@@ -66,20 +58,23 @@ GEM
       rspec-core (~> 3.8.0)
       rspec-expectations (~> 3.8.0)
       rspec-mocks (~> 3.8.0)
-    rspec-core (3.8.0)
+    rspec-core (3.8.1)
       rspec-support (~> 3.8.0)
-    rspec-expectations (3.8.3)
+    rspec-expectations (3.8.4)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.8.0)
-    rspec-mocks (3.8.0)
+    rspec-mocks (3.8.1)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.8.0)
-    rspec-support (3.8.0)
+    rspec-support (3.8.2)
     sinatra (2.0.5)
       mustermann (~> 1.0)
       rack (~> 2.0)
       rack-protection (= 2.0.5)
       tilt (~> 2.0)
+    slack-ruby-bot (0.12.0)
+      hashie
+      slack-ruby-client (>= 0.14.0)
     slack-ruby-client (0.14.2)
       activesupport
       faraday (>= 0.9)
@@ -93,9 +88,9 @@ GEM
     timers (4.3.0)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
-    websocket-driver (0.7.0)
+    websocket-driver (0.7.1)
       websocket-extensions (>= 0.1.0)
-    websocket-extensions (0.1.3)
+    websocket-extensions (0.1.4)
 
 PLATFORMS
   ruby
@@ -110,7 +105,7 @@ DEPENDENCIES
   rake
   rspec
   sinatra
-  slack-ruby-bot!
+  slack-ruby-bot
 
 RUBY VERSION
    ruby 2.6.3p62
