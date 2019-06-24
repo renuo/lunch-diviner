@@ -26,5 +26,13 @@ module SlackLunchBot
       a = LunchDiviner.new
       client.message text: a.slack_formatted_menu, channel: data.channel
     end
+
+    # this is a temporary fix until https://github.com/slack-ruby/slack-ruby-bot/issues/226
+    match(/^(?<bot>\S*)[\s]*(?<expression>.*)$/)
+
+    def self.call(client, data, _match)
+      return if data.subtype == 'bot_message'
+      super
+    end
   end
 end
