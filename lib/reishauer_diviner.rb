@@ -13,8 +13,9 @@ class ReishauerDiviner
   end
 
   def meal(menu_type, day)
-    menu_node = menu_type(menu_type).css('.menu').at(day - 1)
-    meal_object(menu_node.css('.meal').children)
+    daily_menues = @parsed_html.css('mat-tab-body.mat-tab-body').at(day - 1)
+    menu_node = daily_menues ? daily_menues.css('.list-item').at(menu_type).children : nil
+    meal_object(menu_node)
   rescue
     nil
   end
@@ -48,14 +49,16 @@ class ReishauerDiviner
   end
 
   def meal_object(meal_node)
-    { title: meal_node.css('h3').text,
-      price: meal_node.css('dd.price').text.gsub(/CHF[^\d]*(.*)/, '\1'),
-      description: meal_node.css('div.meal-description').text.strip }
+    { title: css_from_meal_node(meal_node, 'h3'),
+      price: css_from_meal_node(meal_node, '.price-wrapper').gsub(',','.').gsub('CHF ',''),
+      description: css_from_meal_node(meal_node, 'h3 ~ p') }
   end
 
-  def menu_type(type)
-    @parsed_html.css('.menu-section').at(type).children
+  def css_from_meal_node(meal_node, css_selector)
+    return '' if meal_node.nil?
+    meal_node.css(css_selector).text.strip
   end
+
 
   def html_menu_content
     open(ENV['REISHAUER_MENU_URL'])

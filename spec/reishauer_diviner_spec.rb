@@ -11,29 +11,22 @@ describe ReishauerDiviner do
   let(:mock_file) { 'spec/data/reishauer_sample_request.html' }
   before(:each) { mock_request_body(mock_file) }
 
-  let(:monday_menu) do
-    { title: 'Akropolis Burger',
+  let(:todays_menu) do
+    { title: 'Schweinshalsbraten(CH)',
       price: '9.80',
-      description: 'Rindfleisch (CH) im  Pita Brot mit Tzatziki, Feta und Tomatenscheib Country Fries und Tagessalat' }
+      description: 'Thymianjus, Kartoffelstock, Gemüse oder Menusalat' }
   end
 
-  let(:tuesday_menu) do
-    { title: 'Rippli und Würstli (CH)',
-      price: '9.80',
-      description: 'Senf Petersilienkartoffeln Sauerkraut' }
-  end
-
-  it 'returns menu of weekdays' do
+  it 'returns menu of actual day' do
     lunch_deviner = ReishauerDiviner.new
-    expect(lunch_deviner.meal(ReishauerDiviner::MENU, 1)).to eq(monday_menu)
-    expect(lunch_deviner.meal(ReishauerDiviner::MENU, 2)).to eq(tuesday_menu)
+    expect(lunch_deviner.meal(ReishauerDiviner::MENU, 4)).to eq(todays_menu)
   end
 
   it 'returns a formatted slack message' do
     lunch_deviner = ReishauerDiviner.new
-    lunch_deviner.slack_formatted_menu(1)
+    lunch_deviner.slack_formatted_menu(4)
     expect(lunch_deviner).to receive(:slack_formatted_meal).exactly(3).times.and_return('MEAL')
-    expect(lunch_deviner.slack_formatted_menu(1)).to eq("MEAL\n\nMEAL\n\nMEAL")
+    expect(lunch_deviner.slack_formatted_menu(4)).to eq("MEAL\n\nMEAL\n\nMEAL")
   end
 
   it 'returns a slack_formatted_meal' do
@@ -51,17 +44,16 @@ describe ReishauerDiviner do
 
   context 'when has not all menus' do
     let(:mock_file) { 'spec/data/reishauer_sample_request_missing_menu.html' }
-    let(:missing_menu) { { description: '', price: '0.00', title: 'Pfingstmontag' } }
+    let(:missing_menu) { { description: '', price: '', title: '' } }
     let(:tuesday_menu) do
       { description: 'Champignonsauce, Nudeln, Gemüse oder Menusalat',
         price: '9.80',
         title: 'Schweinsrahmschnitzel(CH)' }
     end
 
-    it 'returns menu of weekdays' do
+    it 'returns an empty menu' do
       lunch_deviner = ReishauerDiviner.new
       expect(lunch_deviner.meal(ReishauerDiviner::MENU, 1)).to eq(missing_menu)
-      expect(lunch_deviner.meal(ReishauerDiviner::MENU, 2)).to eq(tuesday_menu)
     end
   end
 end
