@@ -59,7 +59,6 @@ class ReishauerDiviner
     meal_node.css(css_selector).text.strip
   end
 
-
   def html_menu_content
     open(ENV['REISHAUER_MENU_URL'])
   end
